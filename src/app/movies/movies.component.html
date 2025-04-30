@@ -75,10 +75,13 @@
       <h3>Reviews</h3>
       @for (review of reviews; track review.id; let even = $even) {
       <div class="review-card" [class.even]="even">
+        <div class="review-header">
+          <span class="review-username">{{ review.username }}</span>
+          <span class="review-date">
+            {{ review.createdAt._seconds * 1000 | date : "medium" }}
+          </span>
+        </div>
         <p class="review-text">{{ review.reviewText }}</p>
-        <p class="review-date">
-          {{ review.createdAt._seconds * 1000 | date : "medium" }}
-        </p>
       </div>
       }
     </div>
