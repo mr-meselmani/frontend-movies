@@ -15,7 +15,10 @@
 @if (error) {
 <div class="error-message">{{ error }}</div>
 } @if (isLoading) {
-<div class="loading">Loading...</div>
+<div class="loading-container">
+  <div class="loading-spinner"></div>
+  <p class="loading-text">Loading...</p>
+</div>
 } @else if (movie) {
 <div class="movie-detail">
   <div class="movie-header">
@@ -26,7 +29,18 @@
         {{ movie.Year }} • {{ movie.Runtime }} • {{ movie.Rated }}
       </p>
       <p class="movie-genre">{{ movie.Genre }}</p>
-      <p class="movie-rating">IMDb: {{ movie.imdbRating }}</p>
+
+      @if (movie.Ratings && movie.Ratings.length > 0) {
+      <div class="ratings-container">
+        @for (rating of movie.Ratings; track rating.Source) {
+        <div class="rating-item">
+          <span class="rating-source">{{ rating.Source }}</span>
+          <span class="rating-value">{{ rating.Value }}</span>
+        </div>
+        }
+      </div>
+      }
+
       <p class="movie-director">Director: {{ movie.Director }}</p>
       <p class="movie-actors">Cast: {{ movie.Actors }}</p>
       <p class="movie-plot">{{ movie.Plot }}</p>
@@ -35,7 +49,11 @@
 
   <div class="review-section">
     <h3>Write a Review</h3>
-    <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()" class="review-form">
+    <form
+      [formGroup]="reviewForm"
+      (ngSubmit)="onSubmitReview()"
+      class="review-form"
+    >
       <div class="form-group">
         <textarea
           formControlName="reviewText"
@@ -49,19 +67,19 @@
         class="submit-button"
         [disabled]="!reviewForm.valid || isSubmitting"
       >
-        {{ isSubmitting ? 'Submitting...' : 'Submit Review' }}
+        {{ isSubmitting ? "Submitting..." : "Submit Review" }}
       </button>
     </form>
 
     <div class="reviews-list">
       <h3>Reviews</h3>
       @for (review of reviews; track review.id; let even = $even) {
-        <div class="review-card" [class.even]="even">
-          <p class="review-text">{{ review.reviewText }}</p>
-          <p class="review-date">
-            {{ review.createdAt._seconds * 1000 | date:'medium' }}
-          </p>
-        </div>
+      <div class="review-card" [class.even]="even">
+        <p class="review-text">{{ review.reviewText }}</p>
+        <p class="review-date">
+          {{ review.createdAt._seconds * 1000 | date : "medium" }}
+        </p>
+      </div>
       }
     </div>
   </div>

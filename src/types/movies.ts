@@ -1,17 +1,17 @@
 export interface Movie {
-  id: string;
-  title: string;
-  year: string;
-  poster: string;
-  plot: string;
+  id: string
+  title: string
+  year: string
+  poster: string
+  plot: string
 }
 
 export interface MovieResponse {
-  message: string;
+  message: string
   data: {
-    movie: MovieDetails;
-    reviews: Review[];
-  };
+    movie: MovieDetails
+    reviews: Review[]
+  }
 }
 
 export interface MovieDetails {
@@ -27,18 +27,25 @@ export interface MovieDetails {
   Plot: string;
   Language: string;
   Poster: string;
-  imdbID: string; // Added this field
+  imdbID: string;
   imdbRating: string;
   BoxOffice: string;
+  Ratings: Rating[];
+}
+
+// Add a new interface for Rating
+export interface Rating {
+  Source: string;
+  Value: string;
 }
 
 export interface Review {
-  id: string;
-  movieId: string;
-  reviewText: string;
-  username: string;
+  id: string
+  movieId: string
+  reviewText: string
+  username: string
   createdAt: {
-    _seconds: number;
-    _nanoseconds: number;
-  };
+    _seconds: number
+    _nanoseconds: number
+  }
 }
