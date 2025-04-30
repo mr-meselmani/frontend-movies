@@ -1,0 +1,132 @@
+.search-container {
+  padding: 20px;
+  display: flex;
+  gap: 10px;
+  max-width: 600px;
+  margin: 20px auto; /* Changed from 0 auto */
+  margin-top: 80px; /* Added to account for fixed navbar */
+}
+
+.search-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.movies-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-bottom: 40px; /* Added for better spacing at bottom */
+}
+
+.movie-card {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.2s;
+}
+
+.movie-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.movie-detail {
+  max-width: 1200px;
+  margin: 20px auto;
+  padding: 20px;
+}
+
+.movie-header {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.movie-poster {
+  width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.movie-info {
+  flex: 1;
+}
+
+.movie-meta {
+  color: #666;
+  margin-bottom: 10px;
+}
+
+.movie-genre {
+  color: #007bff;
+  margin-bottom: 15px;
+}
+
+.movie-rating {
+  font-size: 1.2em;
+  color: #ffa500;
+  margin-bottom: 15px;
+}
+
+.movie-plot {
+  line-height: 1.6;
+  margin-top: 20px;
+}
+
+.review-section {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.review-card {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  background-color: white;
+}
+
+.review-card.even {
+  background-color: #f8f9fa;
+}
+
+.review-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.review-date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.review-form {
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.form-input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  resize: vertical;
+  min-height: 100px;
+}
