@@ -1,0 +1,69 @@
+<div class="search-container">
+  <input
+    type="text"
+    [(ngModel)]="searchQuery"
+    (keyup.enter)="search()"
+    placeholder="Search movies..."
+    class="search-input"
+    [disabled]="isLoading"
+  />
+  <button (click)="search()" class="search-button" [disabled]="isLoading">
+    {{ isLoading ? "Searching..." : "Search" }}
+  </button>
+</div>
+
+@if (error) {
+<div class="error-message">{{ error }}</div>
+} @if (isLoading) {
+<div class="loading">Loading...</div>
+} @else if (movie) {
+<div class="movie-detail">
+  <div class="movie-header">
+    <img [src]="movie.Poster" [alt]="movie.Title" class="movie-poster" />
+    <div class="movie-info">
+      <h1>{{ movie.Title }}</h1>
+      <p class="movie-meta">
+        {{ movie.Year }} • {{ movie.Runtime }} • {{ movie.Rated }}
+      </p>
+      <p class="movie-genre">{{ movie.Genre }}</p>
+      <p class="movie-rating">IMDb: {{ movie.imdbRating }}</p>
+      <p class="movie-director">Director: {{ movie.Director }}</p>
+      <p class="movie-actors">Cast: {{ movie.Actors }}</p>
+      <p class="movie-plot">{{ movie.Plot }}</p>
+    </div>
+  </div>
+
+  <div class="review-section">
+    <h3>Write a Review</h3>
+    <form [formGroup]="reviewForm" (ngSubmit)="onSubmitReview()" class="review-form">
+      <div class="form-group">
+        <textarea
+          formControlName="reviewText"
+          placeholder="Write your review here..."
+          class="form-input"
+          rows="4"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        class="submit-button"
+        [disabled]="!reviewForm.valid || isSubmitting"
+      >
+        {{ isSubmitting ? 'Submitting...' : 'Submit Review' }}
+      </button>
+    </form>
+
+    <div class="reviews-list">
+      <h3>Reviews</h3>
+      @for (review of reviews; track review.id; let even = $even) {
+        <div class="review-card" [class.even]="even">
+          <p class="review-text">{{ review.reviewText }}</p>
+          <p class="review-date">
+            {{ review.createdAt._seconds * 1000 | date:'medium' }}
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</div>
+}
