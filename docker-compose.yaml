@@ -1,0 +1,12 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: movies-client
+    ports:
+      - "4200:4200"
+    volumes:
+      - ./src:/movies-client/src
+      - ./pnpm-lock.yaml:/movies-client/pnpm-lock.yaml
+      - ./package.json:/movies-client/package.json
